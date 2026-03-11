@@ -314,3 +314,75 @@ button:disabled {
 .back-btn:hover {
   background: #b9972e;
 }
+
+/* ===== MOBILE RESPONSIVENESS ===== */
+@media (max-width: 768px) {
+
+  body {
+    padding-top: 60px;
+  }
+
+  /* Navbar links — hamburger handles mobile */
+  .navbar nav {
+    display: none;
+  }
+
+  /* Scroll image container — reduce height so it fits the phone screen */
+  .scroll-container {
+    width: 95vw;
+    height: 85vh;
+    transform: translateY(-20px);
+  }
+
+  /* Content inside scroll — widen so text isn't too cramped */
+  .scroll-content {
+    width: 72%;
+    top: 28%;
+    gap: 0.6rem;
+  }
+
+  /* Form inputs */
+  input, select {
+    font-size: 0.8rem;
+    padding: 6px;
+  }
+
+  /* Buttons row — stack them vertically if needed */
+  .scroll-content > form > div[style] {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  button {
+    font-size: 0.75rem;
+    padding: 9px 16px;
+  }
+
+  /* Output text */
+  #outputText {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 420px) {
+  .scroll-container {
+    height: 82vh;
+  }
+
+  .scroll-content {
+    width: 68%;
+    top: 26%;
+    gap: 0.4rem;
+  }
+
+  button {
+    font-size: 0.7rem;
+    padding: 7px 12px;
+    letter-spacing: 0;
+  }
+
+  input, select {
+    font-size: 0.75rem;
+  }
+}

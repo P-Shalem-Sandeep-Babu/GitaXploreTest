@@ -351,3 +351,76 @@ body {
 .story {
   width: 100%;
 }
+
+/* ===== MOBILE RESPONSIVENESS ===== */
+@media (max-width: 768px) {
+
+  /* Navbar — hide desktop nav links, only show logo */
+  .navbar nav {
+    display: none; /* hamburger-menu.js handles the mobile menu */
+  }
+
+  .glow-btn {
+    display: none; /* hide Translate button in navbar on mobile, user uses nav menu */
+  }
+
+  /* Hero */
+  .hero-overlay h1 {
+    font-size: 26px;
+    line-height: 1.3;
+  }
+
+  .hero-overlay p {
+    font-size: 14px;
+  }
+
+  /* Sections */
+  .section {
+    padding: 70px 0;
+  }
+
+  .section h2 {
+    font-size: 26px;
+  }
+
+  /* Cards — stack vertically, full width */
+  .features,
+  .team-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .card,
+  .team-card {
+    width: 90%;
+    max-width: 100%;
+  }
+
+  /* Contact Form */
+  .contact-form {
+    padding: 0 10px;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .contact-submit-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero-overlay h1 {
+    font-size: 20px;
+  }
+
+  .logo {
+    font-size: 16px;
+  }
+
+  .section h2 {
+    font-size: 22px;
+  }
+}
