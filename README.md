@@ -48,8 +48,8 @@ This project is configured for **Render** via `render.yaml`.
 
 | Service | Type | URL |
 |---------|------|-----|
-| Backend API | Python / FastAPI | `https://gitaversebackend.onrender.com` |
-| Frontend | Static Site | `https://gitaverse.onrender.com` |
+| Backend API | Python / FastAPI | `https://gitaverse-backend.onrender.com` |
+| Frontend | Static Site | `https://gitaverse-frontend.onrender.com` |
 
 ### Deploy Steps
 1. Push to GitHub
