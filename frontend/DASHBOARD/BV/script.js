@@ -47,31 +47,32 @@ document.addEventListener('DOMContentLoaded', () => {
         // Start Typewriter Animation
         typeWriter(currentMessage, outputText);
         
-        // Setup Audio Button
-        // Remove old event listeners to prevent duplicates
-        const newAudioBtn = audioBtn.cloneNode(true);
-        audioBtn.parentNode.replaceChild(newAudioBtn, audioBtn);
-        
-        newAudioBtn.style.display = "none";
+        // Reset button visibility first
+        audioBtn.style.display = "none";
 
         if (data && data.audio_url) {
-            // Un-hide the button so the user can finally see it
-            newAudioBtn.style.display = "flex";
+            // Un-hide the original button
+            audioBtn.style.display = "flex";
             
-            // 🔴 ADD THIS
-            const audio = document.createElement("audio");
-             // audio.src = "http://127.0.0.1:8000" + data.audio_url;
-             audio.src = "https://gitaversebackend.onrender.com" + data.audio_url;
-            audio.preload = "auto";
+            // Generate the invisible audio player
+            let audioPlayer = document.getElementById("hiddenAudioPlayer");
+            if (!audioPlayer) {
+                audioPlayer = document.createElement("audio");
+                audioPlayer.id = "hiddenAudioPlayer";
+                document.body.appendChild(audioPlayer);
+            }
+            audioPlayer.src = "https://gitaversebackend.onrender.com" + data.audio_url;
+            audioPlayer.preload = "auto";
 
-    // 🔴 IMPORTANT: attach to DOM (invisible)
-           document.body.appendChild(audio);
+            // Clean up old click listeners by cloning replacing exactly once correctly
+            const newAudioBtn = audioBtn.cloneNode(true);
+            audioBtn.parentNode.replaceChild(newAudioBtn, audioBtn);
 
-           newAudioBtn.addEventListener('click', () => {
+            newAudioBtn.addEventListener('click', () => {
                 console.log("Listen button clicked");
-                audio.currentTime = 0;
-                audio.play().catch(err => console.error(err));
-          });
+                audioPlayer.currentTime = 0;
+                audioPlayer.play().catch(err => console.error(err));
+            });
         }
     });
 
