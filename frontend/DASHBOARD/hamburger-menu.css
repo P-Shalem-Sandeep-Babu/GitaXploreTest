@@ -1,0 +1,160 @@
+/* Hamburger Menu Styles */
+
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+    position: relative;
+}
+
+.hamburger-line {
+    width: 100%;
+    height: 3px;
+    background-color: #FFD700;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.navbar.scrolled .hamburger-line {
+    background-color: #D4AF37;
+}
+
+/* Hamburger animation when active */
+.hamburger-menu.active .hamburger-line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger-menu.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.hamburger-menu.active .hamburger-line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile Navigation Styles */
+@media (max-width: 768px) {
+    .hamburger-menu {
+        display: flex;
+    }
+
+    .nav-content {
+        position: relative;
+    }
+
+    .right-section {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        height: calc(100vh - 70px);
+        background: rgba(10, 10, 20, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 0;
+        padding: 2rem 1rem;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        overflow-y: auto;
+        z-index: 999;
+    }
+
+    .navbar.scrolled .right-section {
+        background: rgba(255, 255, 255, 0.98);
+        border-top: 2px solid #D4AF37;
+    }
+
+    .right-section.active {
+        transform: translateX(0);
+    }
+
+    .right-section nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .right-section nav a {
+        width: 100%;
+        text-align: center;
+        padding: 1rem 1.5rem;
+        margin: 0;
+        font-size: 1.1rem;
+        border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        color: #FFD700 !important;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+    }
+
+    .navbar.scrolled .right-section nav a {
+        color: #333 !important;
+        text-shadow: none;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .right-section nav a:hover,
+    .right-section nav a.active {
+        background: rgba(212, 175, 55, 0.1);
+        color: #FFFF00 !important;
+    }
+
+    .navbar.scrolled .right-section nav a:hover,
+    .navbar.scrolled .right-section nav a.active {
+        background: rgba(212, 175, 55, 0.1);
+        color: #D4AF37 !important;
+    }
+
+    .right-section .glow-btn,
+    .right-section .outline-btn {
+        width: 80%;
+        text-align: center;
+        padding: 1rem 2rem;
+        margin-top: 1rem;
+        font-size: 1rem;
+    }
+
+    /* Back button adjustments for mobile */
+    .back-btn {
+        top: 80px;
+        left: 10px;
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .right-section nav a {
+        font-size: 0.9rem;
+        margin-right: 10px;
+    }
+
+    .right-section {
+        gap: 10px;
+    }
+}
+
+/* Prevent body scroll when menu is open */
+body.menu-open {
+    overflow: hidden;
+}
+
+/* Smooth transitions for all states */
+.navbar,
+.right-section,
+.hamburger-line {
+    transition: all 0.3s ease;
+}

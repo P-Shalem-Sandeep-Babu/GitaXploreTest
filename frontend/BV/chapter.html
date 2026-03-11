@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhagavad Gita Chapter 1: Arjuna's Vishada Yoga</title>
+    
+    <link rel="stylesheet" href="../DASHBOARD/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=MedievalSharp&family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Chapter Page Styles - Inline */
+        :root {
+            --gold: #d4af37;
+            --text-primary: #333;
+            --text-secondary: #666;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --border-color: rgba(212, 175, 55, 0.2);
+            --font-title: 'Cinzel', serif;
+            --font-body: 'Inter', sans-serif;
+            --sanskrit-font: 'MedievalSharp', cursive;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            font-family: var(--font-body);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background: transparent;
+            transition: 0.3s ease;
+            padding: 0.8rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar.scrolled {
+            background: white;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            padding: 0.6rem 0;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #D4AF37;
+            font-family: var(--font-title);
+            letter-spacing: 1px;
+        }
+
+        .navbar.scrolled .logo {
+            color: #8B5E3C;
+        }
+
+        .right-section {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .navbar nav {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .navbar nav a {
+            color: #FFD700 !important;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8), 0 0 12px rgba(255, 215, 0, 0.4);
+        }
+
+        .navbar nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #FFFF00;
+            transition: width 0.3s ease;
+        }
+
+        .navbar nav a:hover::after {
+            width: 100%;
+        }
+
+        .navbar.scrolled nav a {
+            color: #D4AF37 !important;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar nav a:hover,
+        .navbar nav a.active {
+            color: #FFFF00 !important;
+            text-shadow: 0 0 12px rgba(255, 255, 0, 1), 0 2px 6px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Button styles for transparent navbar */
+        .navbar .glow-btn {
+            background: linear-gradient(45deg, #D4AF37, #D4AF37) !important;
+            color: white !important;
+            border: none !important;
+            box-shadow: 0 0 10px rgba(231, 245, 42, 0.6);
+            transition: 0.3s ease;
+        }
+
+        .navbar .glow-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(225, 239, 35, 0.9) !important;
+        }
+
+        .navbar .outline-btn {
+            color: white !important;
+            border: 2px solid white !important;
+            background: transparent !important;
+            transition: 0.3s ease;
+        }
+
+        .navbar .outline-btn:hover {
+            color: #D4AF37 !important;
+            border-color: #D4AF37 !important;
+        }
+
+        .navbar.scrolled .glow-btn {
+            background: linear-gradient(45deg, #D4AF37, #D4AF37) !important;
+            color: white !important;
+        }
+
+        .navbar.scrolled .outline-btn {
+            color: #D4AF37 !important;
+            border-color: #D4AF37 !important;
+        }
+
+        /* Chapter Hero Section */
+        .chapter-hero {
+            position: relative;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+            padding-top: 70px;
+        }
+
+        /* Dark overlay behind navbar for better text visibility */
+        .chapter-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.7),
+                rgba(0, 0, 0, 0)
+            );
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--gold) 0%, #b8941f 50%, #8b6914 100%);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.6),
+                rgba(0, 0, 0, 0.3),
+                rgba(0, 0, 0, 0.5)
+            );
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .breadcrumb {
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 0.8;
+        }
+
+        .chapter-title {
+            margin-bottom: 1rem;
+        }
+
+        .chapter-number {
+            display: block;
+            font-family: var(--font-title);
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 600;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .chapter-name {
+            display: block;
+            font-family: var(--font-title);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .chapter-sanskrit {
+            font-family: var(--sanskrit-font);
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            margin-bottom: 1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .chapter-description {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .chapter-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        /* Chapter Introduction */
+        .chapter-introduction {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .intro-content h2 {
+            font-family: var(--font-title);
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .intro-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: justify;
+        }
+
+        /* Verses Section */
+        .verses-section {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-title);
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 3rem;
+        }
+
+        /* Loading Indicator */
+        .loading-indicator {
+            text-align: center;
+            padding: 3rem;
+            color: var(--gold);
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 1rem;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Verses Container */
+        .verses-container {
+            display: grid;
+            gap: 2rem;
+        }
+
+        /* Verse Card - LeetCode Style */
+        .verse-card {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: verseCardFadeIn 0.6s ease-out forwards;
+        }
+
+        .verse-main {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1.75rem 0;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        @media (min-width: 640px) {
+            .verse-main {
+                flex-direction: row;
+                gap: 1.5rem;
+            }
+        }
+
+        .verse-main:hover {
+            margin: 0 -0.5rem;
+            padding: 1.75rem 0.5rem;
+            border-radius: 8px;
+            background: rgba(212, 175, 55, 0.05);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .verse-main:focus-within {
+            margin: 0 -0.5rem;
+            padding: 1.75rem 0.5rem;
+            border-radius: 8px;
+            background: rgba(212, 175, 55, 0.05);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            outline: none;
+        }
+
+        .verse-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            width: 7rem;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 639px) {
+            .verse-header {
+                width: auto;
+            }
+        }
+
+        .verse-number {
+            font-family: var(--font-title);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .verse-content {
+            flex: 1;
+            text-align: justify;
+            font-family: var(--sanskrit-font);
+            font-size: 1.125rem;
+            line-height: 1.75;
+            color: #333;
+            transition: color 0.2s ease;
+            margin: 0;
+        }
+
+        .verse-main:hover .verse-content {
+            color: var(--text-primary);
+        }
+
+        .expand-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+        }
+
+        .expand-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: rgba(156, 163, 175, 1);
+            transition: all 0.2s ease;
+            transform-origin: center;
+        }
+
+        .verse-main:hover .expand-icon {
+            color: rgba(107, 114, 128, 1);
+        }
+
+        .verse-card.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Hidden Content */
+        .verse-expanded {
+            overflow: hidden;
+            transition: all 0.25s ease;
+            height: 0;
+        }
+
+        .verse-card.expanded .verse-expanded {
+            height: auto;
+            padding: 0 0 1.75rem 0;
+        }
+
+        .verse-expanded-content {
+            margin-top: 1rem;
+            padding-left: 1.75rem;
+        }
+
+        @media (max-width: 639px) {
+            .verse-expanded-content {
+                padding-left: 0;
+            }
+        }
+
+        .translation-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(248, 249, 250, 0.8);
+            border-radius: 6px;
+            border-left: 3px solid var(--gold);
+        }
+
+        .translation-label {
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .translation-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        /* Chapter Navigation */
+        .chapter-navigation {
+            padding: 3rem 0;
+            background: white;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        /* When only next button is visible (chapter 1), align to right */
+        .nav-buttons.only-next {
+            justify-content: flex-end;
+        }
+
+        /* When only prev button is visible (chapter 18), align to left */
+        .nav-buttons.only-prev {
+            justify-content: flex-start;
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2rem;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-width: 180px;
+            justify-content: center;
+        }
+
+        .nav-btn:hover {
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-arrow {
+            font-size: 1.2rem;
+            color: var(--gold);
+        }
+
+        /* Animations */
+        @keyframes verseCardFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .chapter-hero {
+                min-height: 50vh;
+            }
+
+            .hero-content {
+                padding: 1rem;
+            }
+
+            .chapter-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .stat-item {
+                padding: 0.8rem 1.5rem;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-btn {
+                width: 100%;
+            }
+
+            .verse-number {
+                font-size: 0.9rem;
+            }
+
+            .verse-content {
+                font-size: 1rem;
+            }
+
+            .translation-text {
+                font-size: 0.9rem;
+            }
+
+            .intro-content p {
+                text-align: left;
+            }
+
+            .verse-main:hover {
+                margin: 0;
+                padding: 1.75rem 0;
+            }
+
+            .verse-main:focus-within {
+                margin: 0;
+                padding: 1.75rem 0;
+            }
+        }
+
+        .translate-more{
+            margin-top:10px;
+        }
+
+        .translate-btn{
+            display:inline-block;
+            padding:8px 16px;
+            background:#d4af37;
+            color:white;
+            text-decoration:none;
+            border-radius:6px;
+            font-size:0.9rem;
+            font-weight:600;
+            transition:all 0.2s ease;
+        }
+
+        .translate-btn:hover{
+            background:#b8941f;
+            transform:translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ================= NAVBAR ================= -->
+    <header class="navbar">
+        <div class="container nav-content">
+            <div class="logo">Bhagavad Gītā</div>
+            <div class="right-section">
+                <nav>
+                <a href="../DASHBOARD/index.html">Home</a>
+                    <a href="../DASHBOARD/index.html#about">About</a>
+                    <a href="chapters.html">Chapters</a>
+                    <a href="../DASHBOARD/index.html#team">TeamXplore</a>
+                    <a href="../DASHBOARD/index.html#contact">Contact</a>
+                </nav>
+                <a href="../BV/translation.html" class="glow-btn">Translate</a>
+                
+            </div>
+        </div>
+    </header>
+
+    <!-- Chapter Hero Section -->
+    <section class="chapter-hero">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="chapters.html">Chapters</a> > <span>Chapter 1</span>
+            </div>
+            <div class="hero-content">
+                <h1 class="chapter-title">
+                    <span class="chapter-number" id="chapterNumberText"></span>
+                    <span class="chapter-name" id="chapterNameText"></span>
+                </h1>
+                <p class="chapter-sanskrit" id="chapterSanskrit"></p>
+                <p class="chapter-description" id="chapterDescription"></p>
+                <div class="chapter-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="verseCount"></span>
+                        <span class="stat-label">Verses</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="chapterStat"></span>
+                        <span class="stat-label">Chapter</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chapter Introduction -->
+    <section class="chapter-introduction">
+        <div class="container">
+            <div class="intro-content">
+                <h2>Chapter Introduction</h2>
+
+                <div id="chapterIntroText"></div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Verses Section -->
+    <section class="verses-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>All Verses</h2>
+            </div>
+            
+            <!-- Loading Indicator -->
+            <div class="loading-indicator" id="loadingIndicator">
+                <div class="loading-spinner"></div>
+                <p>Loading verses...</p>
+            </div>
+
+            <!-- Verses Container -->
+            <div class="verses-container" id="versesContainer">
+                <!-- Verses will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Chapter Navigation -->
+    <section class="chapter-navigation">
+        <div class="container">
+            <div class="nav-buttons">
+                <a id="prevChapter" class="nav-btn back-btn">
+                    <span class="nav-arrow">←</span>
+                    <span>previous Chapters</span>
+                </a>
+                
+                <a id="nextChapter" class="nav-btn next-btn">
+                    <span>Next Chapter</span>
+                    <span class="nav-arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Chapter background images mapping
+        const chapterBackgrounds = {
+            1: 'ch-1.webp',
+            2: 'ch-2.jpg',
+            3: 'ch-3.webp',
+            4: 'ch-4.jpg',
+            5: 'ch-5.jpg',
+            6: 'ch-6.jpg',
+            7: 'ch-7.jpg',
+            8: 'ch-8.webp',
+            9: 'ch-9.jpg',
+            10: 'ch-10',  // Note: no extension in folder
+            11: 'ch-11.jpg',
+            12: 'ch-12.webp',
+            13: 'ch-13.jpg',
+            14: 'ch-14.jpg',
+            15: 'ch-15.jpg',
+            16: 'ch-16.jpg',
+            17: 'ch-17.webp',
+            18: 'ch-18.jpg'
+        };
+
+        // Chapter 1 specific data
+        const chapterFiles = {
+            1: "Ch-1_Arjuna's_Vishada_Yoga.json",
+            2: "Ch-2_Samkhya_Yoga.json",
+            3: "Ch-3_Karma_Yoga.json",
+            4: "Ch-4_Knowledge, Action_and_Renunciation_Yoga.json",
+            5: "Ch-5_Karma_Sanyasa_Yoga.json",
+            6: "Ch-6_Meditation.json",
+            7: "Ch-7_Knowledge_and_Science_Yoga.json",
+            8: "Ch-8_Akshar_Brahma_Yoga.json",
+            9: "Ch-9_Rajavidya_Rajaguhya_Yoga.json",
+            10: "Ch-10_Vibhuti_Yoga.json",
+            11: "Ch-11 _Visvaroopadarsana_Yoga.json",
+            12: "Ch-12_Bhakti_Yoga.json",
+            13: "Ch-13_Kshetra–Kshetrajna_Vibhaga_Yoga.json",
+            14: "Ch-14_Guna_Traya_Vibhaga_Yoga.json",
+            15: "Ch-15_Purushottama_Yoga.json",
+            16: "Ch-16_Daivasura_Sampad_Vibhaga_Yoga.json",
+            17: "Ch-17_Shraddha_Traya_Vibhaga_Yoga.json",
+            18: "Ch-18_Moksha_Sanyasa_Yoga.json"
+        };
+
+        // Get chapter number from URL
+        function getChapterFromURL(){
+        const params = new URLSearchParams(window.location.search);
+        return parseInt(params.get("chapter")) || 1;
+        }
+
+        const chapterNumber = getChapterFromURL();
+        const chapterFile = chapterFiles[chapterNumber];
+
+        // Function to set chapter background image
+        function setChapterBackground() {
+            const heroBackground = document.querySelector('.hero-background');
+            const backgroundImage = chapterBackgrounds[chapterNumber];
+            
+            if (heroBackground && backgroundImage) {
+                // Set background image with fallback gradient
+                heroBackground.style.backgroundImage = `url('images/${backgroundImage}'), linear-gradient(135deg, var(--gold) 0%, #b8941f 50%, #8b6914 100%)`;
+                console.log(`Set background image: images/${backgroundImage}`);
+            } else {
+                console.log('Using default gradient background');
+            }
+        }
+
+        // Function to load chapter data
+        async function loadChapterData() {
+            console.log('Starting to load chapter data...');
+            console.log('Current page URL:', window.location.href);
+            
+            try {
+                // Try different possible paths
+                const possiblePaths = [
+                `../../BhagavatGitaJsonFiles/${chapterFile}`
+                ];
+                
+
+                let response;
+                let successPath = null;
+                
+                for (const path of possiblePaths) {
+                    try {
+                        console.log(`Trying to load from: ${path}`);
+                        response = await fetch(path);
+                        console.log(`Response status for ${path}:`, response.status);
+                        
+                        if (response.ok) {
+                            successPath = path;
+                            console.log(`Successfully loaded from: ${path}`);
+                            break;
+                        } else {
+                            console.log(`Failed to load from ${path}: ${response.status} ${response.statusText}`);
+                        }
+                    } catch (e) {
+                        console.log(`Error loading from ${path}:`, e.message);
+                    }
+                }
+
+                if (!response || !response.ok) {
+                    throw new Error(`Failed to load chapter data from any path. Last status: ${response ? response.status : 'No response'}`);
+                }
+
+                const data = await response.json();
+                console.log(`Loaded ${data.length} verses successfully from ${successPath}`);
+                console.log('First verse:', data[0]);
+                return data;
+            } catch (error) {
+                console.error('Error loading chapter data:', error);
+                console.error('Error details:', {
+                    message: error.message,
+                    stack: error.stack
+                });
+                return null;
+            }
+        }
+
+        // Function to render verses
+        function renderVerses(verses) {
+            const container = document.getElementById('versesContainer');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            
+            console.log('Rendering verses:', verses);
+            
+            if (!verses || verses.length === 0) {
+                container.innerHTML = '<p class="text-center">No verses found.</p>';
+                loadingIndicator.style.display = 'none';
+                return;
+            }
+
+            container.innerHTML = '';
+            
+            verses.forEach((verse, index) => {
+                console.log(`Creating verse ${verse.verse}:`, verse);
+                
+                const verseCard = document.createElement('div');
+                verseCard.className = 'verse-card';
+                verseCard.style.animationDelay = `${(index % 5) * 0.05 + 0.1}s`;
+                
+                verseCard.innerHTML = `
+                    <div class="verse-main">
+                        <div class="verse-header">
+                            <span class="verse-number">Verse ${verse.verse}</span>
+                        </div>
+                        <p class="verse-content">${verse.sanskrit.text}</p>
+                        <div class="expand-indicator">
+                            <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.293 9.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L12 13.586l4.293-4.293z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="verse-expanded">
+                        <div class="verse-expanded-content">
+                            <div class="translation-item">
+                                <div class="translation-label">English Translation</div>
+                                <p class="translation-text">${verse.translations.english.text}</p>
+                            </div>
+                            <div class="translation-item">
+                                <div class="translation-label">Hindi Translation</div>
+                                <p class="translation-text">${verse.translations.hindi.text}</p>
+                            </div>
+
+                            <div class="translate-more">
+                                <a 
+                                    class="translate-btn"
+                                    target="_blank"
+                                    href="../BV/translation.html?text=${encodeURIComponent(verse.sanskrit.text)}">
+                                    Translate More !!!
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // Add click event for expansion
+                const verseMain = verseCard.querySelector('.verse-main');
+                verseMain.addEventListener('click', () => {
+                    verseCard.classList.toggle('expanded');
+                });
+                
+                container.appendChild(verseCard);
+            });
+            
+            loadingIndicator.style.display = 'none';
+            console.log('Finished rendering all verses');
+        }
+        
+        const chapterMeta = {
+            1:{
+            name:"Arjuna's Vishada Yoga",
+            sanskrit:"अर्जुनविषादयोग",
+            description:"The Yoga of Arjuna's Dejection",
+            verses:47,
+            introduction:`
+            <p>The Bhagavad Gita begins on the battlefield of Kurukshetra where the armies of the Pandavas and Kauravas assemble for war.</p>
+            <p>King Dhritarashtra asks Sanjaya to narrate the events of the battlefield. Arjuna asks Krishna to place his chariot between the armies so he can see those who have come to fight.</p>
+            <p>When Arjuna sees his teachers, relatives, and friends on both sides, he becomes overwhelmed with grief and refuses to fight. This moment of despair sets the stage for the teachings of the Bhagavad Gita.</p>
+            `
+            },
+
+            2:{
+            name:"Samkhya Yoga",
+            sanskrit:"सांख्ययोग",
+            description:"The Yoga of Knowledge",
+            verses:72,
+            introduction:`
+            <p>Krishna begins instructing Arjuna about the nature of the soul and the impermanence of the body.</p>
+            <p>He teaches that the soul is eternal and cannot be destroyed. Krishna also introduces the philosophy of Karma Yoga — performing duties without attachment to the results.</p>
+            <p>This chapter lays the philosophical foundation for the entire Bhagavad Gita.</p>
+            `
+            },
+
+            3:{
+            name:"Karma Yoga",
+            sanskrit:"कर्मयोग",
+            description:"The Yoga of Action",
+            verses:43,
+            introduction:`
+            <p>Krishna explains that no one can remain inactive because action is part of nature.</p>
+            <p>He teaches that actions should be performed selflessly as a duty without attachment to the fruits.</p>
+            <p>This path of selfless action purifies the mind and leads to spiritual progress.</p>
+            `
+            },
+
+            4:{
+            name:"Jnana Karma Sanyasa Yoga",
+            sanskrit:"ज्ञानकर्मसंन्यासयोग",
+            description:"The Yoga of Knowledge and Renunciation",
+            verses:42,
+            introduction:`
+            <p>Krishna explains the divine origin of spiritual knowledge and how it has been passed down through generations.</p>
+            <p>He teaches that knowledge destroys ignorance and frees a person from the cycle of karma.</p>
+            <p>The chapter emphasizes performing actions with wisdom and understanding.</p>
+            `
+            },
+
+            5:{
+            name:"Karma Sanyasa Yoga",
+            sanskrit:"कर्मसंन्यासयोग",
+            description:"The Yoga of Renunciation",
+            verses:29,
+            introduction:`
+            <p>This chapter discusses the difference between renouncing action and performing action selflessly.</p>
+            <p>Krishna explains that true renunciation is not giving up work but giving up attachment to the results.</p>
+            <p>Through disciplined action and detachment, one can attain inner peace.</p>
+            `
+            },
+
+            6:{
+            name:"Dhyana Yoga",
+            sanskrit:"ध्यानयोग",
+            description:"The Yoga of Meditation",
+            verses:47,
+            introduction:`
+            <p>Krishna describes the process of meditation and the importance of controlling the mind.</p>
+            <p>Through regular practice and discipline, one can attain mental stability and spiritual realization.</p>
+            <p>The chapter concludes by explaining that the yogi devoted to God is the highest among all seekers.</p>
+            `
+            },
+
+            7:{
+            name:"Jnana Vijnana Yoga",
+            sanskrit:"ज्ञानविज्ञानयोग",
+            description:"The Yoga of Knowledge and Realization",
+            verses:30,
+            introduction:`
+            <p>Krishna reveals deeper knowledge about the nature of the universe and the divine.</p>
+            <p>He explains how everything originates from the Supreme and is sustained by it.</p>
+            <p>This chapter emphasizes understanding the divine through both knowledge and realization.</p>
+            `
+            },
+
+            8:{
+            name:"Akshara Brahma Yoga",
+            sanskrit:"अक्षरब्रह्मयोग",
+            description:"The Yoga of the Imperishable Brahman",
+            verses:28,
+            introduction:`
+            <p>Krishna explains the nature of the eternal Supreme Being.</p>
+            <p>He describes what happens at the time of death and how remembering the divine leads to liberation.</p>
+            <p>The chapter emphasizes devotion and spiritual awareness at the final moment of life.</p>
+            `
+            },
+
+            9:{
+            name:"Raja Vidya Raja Guhya Yoga",
+            sanskrit:"राजविद्याराजगुह्ययोग",
+            description:"The Yoga of Royal Knowledge and Royal Secret",
+            verses:34,
+            introduction:`
+            <p>This chapter reveals the most confidential spiritual knowledge.</p>
+            <p>Krishna explains that devotion to God is the highest path to liberation.</p>
+            <p>Even those who have committed mistakes can reach the divine through sincere devotion.</p>
+            `
+            },
+
+            10:{
+            name:"Vibhuti Yoga",
+            sanskrit:"विभूतियोग",
+            description:"The Yoga of Divine Glories",
+            verses:42,
+            introduction:`
+            <p>Krishna describes the divine manifestations present throughout the universe.</p>
+            <p>He explains how the greatness and beauty in the world reflect the power of the Supreme.</p>
+            <p>This helps Arjuna understand the infinite nature of the divine.</p>
+            `
+            },
+
+            11:{
+            name:"Vishvarupa Darshana Yoga",
+            sanskrit:"विश्वरूपदर्शनयोग",
+            description:"The Yoga of the Vision of the Universal Form",
+            verses:55,
+            introduction:`
+            <p>Arjuna asks Krishna to reveal his cosmic form.</p>
+            <p>Krishna grants divine vision and reveals his universal form containing the entire universe.</p>
+            <p>This awe-inspiring vision shows the infinite power of the Supreme Being.</p>
+            `
+            },
+
+            12:{
+            name:"Bhakti Yoga",
+            sanskrit:"भक्तियोग",
+            description:"The Yoga of Devotion",
+            verses:20,
+            introduction:`
+            <p>This chapter focuses on the path of devotion.</p>
+            <p>Krishna explains that loving devotion toward God is one of the simplest and most powerful spiritual paths.</p>
+            <p>He also describes the qualities of a true devotee.</p>
+            `
+            },
+
+            13:{
+            name:"Kshetra Kshetrajna Vibhaga Yoga",
+            sanskrit:"क्षेत्रक्षेत्रज्ञविभागयोग",
+            description:"The Yoga of the Field and the Knower",
+            verses:35,
+            introduction:`
+            <p>Krishna explains the difference between the physical body and the eternal soul.</p>
+            <p>He describes the nature of matter, consciousness, and true knowledge.</p>
+            <p>Understanding this distinction helps one transcend ignorance.</p>
+            `
+            },
+
+            14:{
+            name:"Guna Traya Vibhaga Yoga",
+            sanskrit:"गुणत्रयविभागयोग",
+            description:"The Yoga of the Three Gunas",
+            verses:27,
+            introduction:`
+            <p>Krishna explains the three qualities of nature: sattva, rajas, and tamas.</p>
+            <p>These qualities influence human behavior and personality.</p>
+            <p>By transcending these gunas, a person can attain spiritual freedom.</p>
+            `
+            },
+
+            15:{
+            name:"Purushottama Yoga",
+            sanskrit:"पुरुषोत्तमयोग",
+            description:"The Yoga of the Supreme Person",
+            verses:20,
+            introduction:`
+            <p>This chapter describes the relationship between the material world and the Supreme Being.</p>
+            <p>Krishna explains that beyond the physical universe lies the eternal spiritual reality.</p>
+            <p>The Supreme Person is the ultimate source of all existence.</p>
+            `
+            },
+
+            16:{
+            name:"Daivasura Sampad Vibhaga Yoga",
+            sanskrit:"दैवासुरसम्पद्विभागयोग",
+            description:"The Yoga of Divine and Demonic Qualities",
+            verses:24,
+            introduction:`
+            <p>Krishna explains the difference between divine qualities and demonic tendencies.</p>
+            <p>Divine traits lead to spiritual growth, while demonic traits lead to suffering.</p>
+            <p>The chapter encourages cultivation of virtues like humility, compassion, and self-control.</p>
+            `
+            },
+
+            17:{
+            name:"Shraddha Traya Vibhaga Yoga",
+            sanskrit:"श्रद्धात्रयविभागयोग",
+            description:"The Yoga of Threefold Faith",
+            verses:28,
+            introduction:`
+            <p>This chapter explains the three types of faith influenced by the gunas.</p>
+            <p>Krishna discusses how faith affects worship, food, discipline, and sacrifice.</p>
+            <p>Understanding these helps a seeker choose the path of spiritual growth.</p>
+            `
+            },
+
+            18:{
+            name:"Moksha Sanyasa Yoga",
+            sanskrit:"मोक्षसंन्यासयोग",
+            description:"The Yoga of Liberation and Renunciation",
+            verses:78,
+            introduction:`
+            <p>The final chapter summarizes all the teachings of the Bhagavad Gita.</p>
+            <p>Krishna revisits the paths of knowledge, action, and devotion.</p>
+            <p>Arjuna finally understands his duty and resolves to fight according to Krishna's guidance.</p>
+            `
+            }
+
+        };
+
+        // Initialize the page
+        async function initializePage() {
+            console.log('Initializing page...');
+            const verses = await loadChapterData();
+            if (verses) {
+                console.log('Data loaded successfully, rendering verses...');
+                renderVerses(verses);
+            } else {
+                console.error('Failed to load verses data');
+                document.getElementById('loadingIndicator').innerHTML = '<p style="color: red;">Error loading verses. Please check the console for details and try again later.</p>';
+            }
+        }
+
+        function updateHero(){
+
+        const meta = chapterMeta[chapterNumber];
+
+        document.getElementById("chapterNumberText").textContent =
+        `Chapter ${chapterNumber}`;
+
+        document.getElementById("chapterNameText").textContent =
+        meta.name;
+
+        document.getElementById("chapterSanskrit").textContent =
+        meta.sanskrit;
+
+        document.getElementById("chapterDescription").textContent =
+        meta.description;
+
+        document.getElementById("verseCount").textContent =
+        meta.verses;
+
+        document.getElementById("chapterStat").textContent =
+        chapterNumber;
+
+        document.getElementById("chapterIntroText").innerHTML =
+        meta.introduction;
+
+        }
+
+        // Load verses when page loads
+
+        function setupNavigation(){
+
+            const next = document.getElementById("nextChapter");
+            const prev = document.getElementById("prevChapter");
+            const navButtons = document.querySelector(".nav-buttons");
+
+            let nextVisible = false;
+            let prevVisible = false;
+
+            // Handle Next Chapter button
+            if(next){
+                if(chapterNumber < 18){
+                    next.href = `chapter.html?chapter=${chapterNumber + 1}`;
+                    next.style.display = 'flex';
+                    nextVisible = true;
+                } else {
+                    // Hide Next button on chapter 18
+                    next.style.display = 'none';
+                }
+            }
+
+            // Handle Previous Chapter button
+            if(prev){
+                if(chapterNumber > 1){
+                    prev.href = `chapter.html?chapter=${chapterNumber - 1}`;
+                    prev.style.display = 'flex';
+                    prevVisible = true;
+                } else {
+                    // Hide Previous button on chapter 1
+                    prev.style.display = 'none';
+                }
+            }
+
+            // Update nav-buttons alignment based on visible buttons
+            if(navButtons){
+                navButtons.classList.remove('only-next', 'only-prev');
+                
+                if(nextVisible && !prevVisible){
+                    // Chapter 1: only next button, align right
+                    navButtons.classList.add('only-next');
+                } else if(prevVisible && !nextVisible){
+                    // Chapter 18: only prev button, align left
+                    navButtons.classList.add('only-prev');
+                }
+                // Chapters 2-17: both visible, default space-between
+            }
+
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setChapterBackground();
+            updateHero();
+            initializePage();
+            setupNavigation();
+        });
+
+        // Navbar scroll effect
+        window.addEventListener("scroll", function() {
+            const nav = document.querySelector(".navbar");
+            if (window.scrollY > 50) {
+                nav.classList.add("scrolled");
+            } else {
+                nav.classList.remove("scrolled");
+            }
+        });
+    </script>
+</body>
+</html>
