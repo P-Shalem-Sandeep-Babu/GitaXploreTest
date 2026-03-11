@@ -152,20 +152,22 @@
 
                 </select>
 
-                <!-- Translate Button -->
-                <button type="submit" class="translate-btn">
-                    ✨ Translate
-                </button>
+
+                <!-- Buttons Row -->
+                <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+                    <button type="submit" class="translate-btn">
+                        ✨ Translate
+                    </button>
+                    <button type="button" id="playAudioBtn" class="audio-btn" disabled>
+                        🔊 Listen
+                    </button>
+                </div>
 
             </form>
 
             <!-- Output Section -->
             <div id="outputSection" class="output-section" style="visibility: hidden;">
                 <p id="outputText"></p>
-
-                <button id="playAudioBtn" class="audio-btn" style="display:none;">
-                    🔊 Listen
-                </button>
             </div>
 
         </div>

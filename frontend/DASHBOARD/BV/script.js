@@ -13,15 +13,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentMessage = "";
 
-    // Create a single persistent hidden audio player once - no cloning needed
+    // Create a single persistent hidden audio player once
     const audioPlayer = document.createElement("audio");
     audioPlayer.preload = "auto";
     document.body.appendChild(audioPlayer);
 
-    // Attach a single, persistent click listener directly to the original button
+    // Single persistent click listener on the button
     audioBtn.addEventListener('click', () => {
-        audioPlayer.currentTime = 0;
-        audioPlayer.play().catch(err => console.error("Audio play error:", err));
+        if (audioPlayer.src) {
+            audioPlayer.currentTime = 0;
+            audioPlayer.play().catch(err => console.error("Audio play error:", err));
+        }
     });
 
     form.addEventListener('submit', async (e) => {
@@ -30,8 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const name = document.getElementById('userName').value;
         const lang = document.getElementById('userLanguage').value || 'english';
 
-        // Hide button while waiting for response
-        audioBtn.style.display = "none";
+        // Disable button while waiting for response
+        audioBtn.disabled = true;
+        audioBtn.textContent = "⏳ Loading...";
         currentMessage = "";
 
         let data = null;
@@ -52,17 +55,29 @@ document.addEventListener('DOMContentLoaded', () => {
         // Reveal the output section
         outputSection.style.visibility = 'visible';
 
-        // Start Typewriter Animation
-        typeWriter(currentMessage, outputText);
+        // Start Typewriter Animation, then glow the button when done
+        const glowOnComplete = (data && data.audio_url) ? () => {
+            audioBtn.classList.remove('btn-glow');
+            void audioBtn.offsetWidth; // force reflow to restart animation
+            audioBtn.classList.add('btn-glow');
+            setTimeout(() => audioBtn.classList.remove('btn-glow'), 2000);
+        } : null;
 
-        // Show audio button ONLY if backend returned an audio_url
+        typeWriter(currentMessage, outputText, glowOnComplete);
+
+        // Enable button and load audio if backend returned audio_url
         if (data && data.audio_url) {
             audioPlayer.src = "https://gitaversebackend.onrender.com" + data.audio_url;
-            audioBtn.style.display = "flex";
+            audioBtn.disabled = false;
+            audioBtn.textContent = "🔊 Listen";
+        } else {
+            // No audio available
+            audioBtn.disabled = true;
+            audioBtn.textContent = "🔊 Listen";
         }
     });
 
-    function typeWriter(text, element) {
+    function typeWriter(text, element, onComplete) {
         element.textContent = '';
         let i = 0;
         const speed = 50;
@@ -71,6 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.textContent += text.charAt(i);
                 i++;
                 setTimeout(type, speed);
+            } else if (onComplete) {
+                onComplete();
             }
         }
         type();
