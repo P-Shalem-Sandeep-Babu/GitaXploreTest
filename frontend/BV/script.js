@@ -55,6 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
         newAudioBtn.style.display = "none";
 
         if (data && data.audio_url) {
+            // Un-hide the button so the user can finally see it
+            newAudioBtn.style.display = "flex";
+            
             // 🔴 ADD THIS
             const audio = document.createElement("audio");
              // audio.src = "http://127.0.0.1:8000" + data.audio_url;
