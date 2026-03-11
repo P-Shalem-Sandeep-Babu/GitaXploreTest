@@ -11,16 +11,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     let currentMessage = "";
+    let selectedLang = "en-US";
 
-    const audioPlayer = document.createElement("audio");
-    audioPlayer.preload = "auto";
-    document.body.appendChild(audioPlayer);
+    const speechLangMap = {
+        "english": "en-US", "hindi": "hi-IN", "telugu": "te-IN", "tamil": "ta-IN",
+        "kannada": "kn-IN", "malayalam": "ml-IN", "marathi": "mr-IN", "bengali": "bn-IN",
+        "gujarati": "gu-IN", "urdu": "ur-PK", "arabic": "ar-SA", "french": "fr-FR",
+        "german": "de-DE", "spanish": "es-ES", "portuguese": "pt-PT", "russian": "ru-RU",
+        "japanese": "ja-JP", "korean": "ko-KR", "chinese_simplified": "zh-CN",
+        "chinese_traditional": "zh-TW", "italian": "it-IT", "dutch": "nl-NL",
+        "turkish": "tr-TR", "polish": "pl-PL", "swedish": "sv-SE", "norwegian": "no-NO",
+        "danish": "da-DK", "finnish": "fi-FI", "greek": "el-GR", "hebrew": "he-IL",
+        "indonesian": "id-ID", "malay": "ms-MY", "thai": "th-TH", "vietnamese": "vi-VN",
+        "romanian": "ro-RO", "hungarian": "hu-HU", "czech": "cs-CZ", "ukrainian": "uk-UA"
+    };
 
     audioBtn.addEventListener('click', () => {
-        if (audioPlayer.src) {
-            audioPlayer.currentTime = 0;
-            audioPlayer.play().catch(err => console.error("Audio play error:", err));
-        }
+        if (!currentMessage) return;
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(currentMessage);
+        utterance.lang = selectedLang;
+        utterance.rate = 0.88;
+        utterance.pitch = 1.0;
+        window.speechSynthesis.speak(utterance);
     });
 
     form.addEventListener('submit', async (e) => {
@@ -28,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const name = document.getElementById('userName').value;
         const lang = document.getElementById('userLanguage').value || 'english';
+        selectedLang = speechLangMap[lang] || "en-US";
 
         audioBtn.disabled = true;
         audioBtn.textContent = "⏳ Loading...";
@@ -41,33 +55,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify({ shloka: name, language: lang })
             });
             data = await response.json();
-            if (data.text) {
-                currentMessage = data.text;
-            }
+            if (data.text) currentMessage = data.text;
         } catch (err) {
             console.error("FastAPI error:", err);
         }
 
         outputSection.style.visibility = 'visible';
 
-        // Start Typewriter, then glow button when done
-        const glowOnComplete = (data && data.audio_url) ? () => {
-            audioBtn.classList.remove('btn-glow');
-            void audioBtn.offsetWidth; // force reflow to restart animation
-            audioBtn.classList.add('btn-glow');
-            setTimeout(() => audioBtn.classList.remove('btn-glow'), 2000);
-        } : null;
-
-        typeWriter(currentMessage, outputText, glowOnComplete);
-
-        if (data && data.audio_url) {
-            audioPlayer.src = "https://gitaversebackend.onrender.com" + data.audio_url;
-            audioBtn.disabled = false;
-            audioBtn.textContent = "🔊 Listen";
-        } else {
-            audioBtn.disabled = true;
-            audioBtn.textContent = "🔊 Listen";
-        }
+        typeWriter(currentMessage, outputText, () => {
+            if (currentMessage) {
+                audioBtn.disabled = false;
+                audioBtn.textContent = "🔊 Listen";
+                audioBtn.classList.remove('btn-glow');
+                void audioBtn.offsetWidth;
+                audioBtn.classList.add('btn-glow');
+                setTimeout(() => audioBtn.classList.remove('btn-glow'), 2000);
+            }
+        });
     });
 
     function typeWriter(text, element, onComplete) {
@@ -119,10 +123,10 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (this.opacity <= this.baseOpacity - 0.2 || this.opacity <= 0.1) { this.opacity = Math.max(this.opacity, 0.1); this.twinkleDir = 1; }
             if (mouse.x != null) {
                 let dx = this.x - mouse.x, dy = this.y - mouse.y;
-                let dist = Math.sqrt(dx*dx + dy*dy);
+                let dist = Math.sqrt(dx * dx + dy * dy);
                 if (dist < mouse.radius && dist > 0) {
-                    this.x += (dx/dist) * ((mouse.radius - dist)/mouse.radius) * 2;
-                    this.y += (dy/dist) * ((mouse.radius - dist)/mouse.radius) * 2;
+                    this.x += (dx / dist) * ((mouse.radius - dist) / mouse.radius) * 2;
+                    this.y += (dy / dist) * ((mouse.radius - dist) / mouse.radius) * 2;
                 }
             }
             this.x += this.speedX; this.y += this.speedY;
