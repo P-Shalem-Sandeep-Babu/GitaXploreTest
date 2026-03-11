@@ -355,15 +355,6 @@ body {
 /* ===== MOBILE RESPONSIVENESS ===== */
 @media (max-width: 768px) {
 
-  /* Navbar — hide desktop nav links, only show logo */
-  .navbar nav {
-    display: none; /* hamburger-menu.js handles the mobile menu */
-  }
-
-  .glow-btn {
-    display: none; /* hide Translate button in navbar on mobile, user uses nav menu */
-  }
-
   /* Hero */
   .hero-overlay h1 {
     font-size: 26px;
