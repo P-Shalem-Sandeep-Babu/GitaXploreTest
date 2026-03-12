@@ -652,6 +652,36 @@
             background:#b8941f;
             transform:translateY(-2px);
         }
+
+        /* Search bar */
+        .verse-search-wrap {
+            margin-bottom: 2rem;
+        }
+        .verse-search-input {
+            width: 100%;
+            padding: 0.75rem 1.2rem;
+            border: 2px solid rgba(212,175,55,0.4);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: var(--font-body);
+            background: rgba(255,255,255,0.95);
+            color: var(--text-primary);
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            box-sizing: border-box;
+        }
+        .verse-search-input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(212,175,55,0.15);
+        }
+        .verse-search-input::placeholder { color: #aaa; }
+        .no-results-msg {
+            text-align: center;
+            color: var(--gold);
+            font-size: 1rem;
+            padding: 2rem 0;
+            display: none;
+        }
     </style>
 </head>
 
@@ -722,6 +752,18 @@
             <div class="section-header">
                 <h2>All Verses</h2>
             </div>
+
+            <!-- 🔍 Search by Keyword -->
+            <div class="verse-search-wrap">
+                <input
+                    type="text"
+                    id="verseSearchInput"
+                    class="verse-search-input"
+                    placeholder="🔍 Search by keyword (Sanskrit, English or Hindi)..."
+                    autocomplete="off"
+                />
+            </div>
+            <p class="no-results-msg" id="noResultsMsg">No verses matched your search.</p>
             
             <!-- Loading Indicator -->
             <div class="loading-indicator" id="loadingIndicator">
@@ -940,6 +982,36 @@
             
             loadingIndicator.style.display = 'none';
             console.log('Finished rendering all verses');
+
+            // Wire up search after cards are rendered
+            setupVerseSearch();
+        }
+
+        // --- Search by Keyword ---
+        function setupVerseSearch() {
+            const searchInput = document.getElementById('verseSearchInput');
+            const noResults  = document.getElementById('noResultsMsg');
+            if (!searchInput) return;
+
+            searchInput.addEventListener('input', () => {
+                const q = searchInput.value.trim().toLowerCase();
+                const cards = document.querySelectorAll('#versesContainer .verse-card');
+                let visible = 0;
+
+                cards.forEach(card => {
+                    const sanskrit = card.querySelector('.verse-content')?.textContent.toLowerCase() || '';
+                    const engEl    = card.querySelectorAll('.translation-text')[0];
+                    const hinEl    = card.querySelectorAll('.translation-text')[1];
+                    const english  = engEl ? engEl.textContent.toLowerCase() : '';
+                    const hindi    = hinEl ? hinEl.textContent.toLowerCase() : '';
+
+                    const match = !q || sanskrit.includes(q) || english.includes(q) || hindi.includes(q);
+                    card.style.display = match ? '' : 'none';
+                    if (match) visible++;
+                });
+
+                noResults.style.display = (q && visible === 0) ? 'block' : 'none';
+            });
         }
         
         const chapterMeta = {

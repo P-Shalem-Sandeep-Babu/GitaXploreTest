@@ -10,6 +10,8 @@ import re
 import unicodedata
 import uuid
 import difflib
+import threading
+import time
 
 # ---------------- CONFIG ----------------
 
@@ -118,6 +120,29 @@ LANG_CODES = {
 
 
 os.makedirs(AUDIO_DIR, exist_ok=True)
+
+# ---------------- AUDIO CLEANUP (24 hrs) ----------------
+
+def cleanup_old_audio():
+    """Delete audio files older than 24 hours. Runs every hour."""
+    MAX_AGE_SECONDS = 24 * 60 * 60  # 24 hours
+    CHECK_INTERVAL = 60 * 60        # check every 1 hour
+    while True:
+        now = time.time()
+        try:
+            for fname in os.listdir(AUDIO_DIR):
+                if fname.endswith(".mp3"):
+                    fpath = os.path.join(AUDIO_DIR, fname)
+                    if now - os.path.getmtime(fpath) > MAX_AGE_SECONDS:
+                        os.remove(fpath)
+                        print(f"[cleanup] Deleted old audio: {fname}")
+        except Exception as e:
+            print(f"[cleanup] Error during audio cleanup: {e}")
+        time.sleep(CHECK_INTERVAL)
+
+# Start cleanup thread as a background daemon
+_cleanup_thread = threading.Thread(target=cleanup_old_audio, daemon=True)
+_cleanup_thread.start()
 
 # ---------------- APP ----------------
 

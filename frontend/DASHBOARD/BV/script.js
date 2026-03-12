@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const outputSection = document.getElementById('outputSection');
     const outputText = document.getElementById('outputText');
     const audioBtn = document.getElementById('playAudioBtn');
+    const copyBtn = document.getElementById('copyBtn');
+    const shareBtn = document.getElementById('shareBtn');
 
     const urlParams = new URLSearchParams(window.location.search);
     const textParam = urlParams.get('text');
@@ -37,6 +39,46 @@ document.addEventListener('DOMContentLoaded', () => {
         utterance.rate = 0.88;
         utterance.pitch = 1.0;
         window.speechSynthesis.speak(utterance);
+    });
+
+    // --- Copy Button ---
+    copyBtn.addEventListener('click', () => {
+        if (!currentMessage) return;
+        navigator.clipboard.writeText(currentMessage).then(() => {
+            const orig = copyBtn.textContent;
+            copyBtn.textContent = '✅ Copied!';
+            setTimeout(() => { copyBtn.textContent = orig; }, 2000);
+        }).catch(() => {
+            const ta = document.createElement('textarea');
+            ta.value = currentMessage;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            copyBtn.textContent = '✅ Copied!';
+            setTimeout(() => { copyBtn.textContent = '📋 Copy'; }, 2000);
+        });
+    });
+
+    // --- Share Button ---
+    shareBtn.addEventListener('click', () => {
+        if (!currentMessage) return;
+        const shloka = document.getElementById('userName').value;
+        const shareUrl = window.location.origin + window.location.pathname +
+            '?text=' + encodeURIComponent(shloka);
+        if (navigator.share) {
+            navigator.share({
+                title: 'Bhagavad Gita — Divine Insight',
+                text: currentMessage,
+                url: shareUrl
+            }).catch(() => {});
+        } else {
+            navigator.clipboard.writeText(shareUrl).then(() => {
+                const orig = shareBtn.textContent;
+                shareBtn.textContent = '✅ Link Copied!';
+                setTimeout(() => { shareBtn.textContent = orig; }, 2500);
+            });
+        }
     });
 
     form.addEventListener('submit', async (e) => {
